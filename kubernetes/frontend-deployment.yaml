@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pern-frontend
+  namespace: todo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pern-frontend
+  template:
+    metadata:
+      labels:
+        app: pern-frontend
+    spec:
+      containers:
+        - name: pern-frontend
+          image: 660551383913.dkr.ecr.us-east-1.amazonaws.com/pern-frontend:latest
+          ports:
+            - containerPort: 80

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pern-backend
+  namespace: todo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pern-backend
+  template:
+    metadata:
+      labels:
+        app: pern-backend
+    spec:
+      containers:
+        - name: pern-backend
+          image: 660551383913.dkr.ecr.us-east-1.amazonaws.com/pern-backend:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PG_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PG_USER
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PG_PASSWORD
+            - name: PG_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PG_HOST
+            - name: PG_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PG_PORT
+            - name: PG_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: PG_DATABASE
