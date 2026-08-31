@@ -2,9 +2,11 @@
 
 A **PERN stack** (PostgreSQL, Express.js, React, Node.js) Todo application, containerized and deployed on **AWS** using Docker, Amazon ECR, Amazon EKS, Kubernetes, an Application Load Balancer, Amazon RDS for PostgreSQL, and Amazon CloudWatch.
 
-This project focuses on the **DevOps and cloud infrastructure side**: taking an existing PERN Todo application and building a full production-style deployment pipeline around it by containerization, image management, Kubernetes orchestration, load balancing, network segmentation, and monitoring.
+This project focuses on the **DevOps and cloud infrastructure side**: taking an existing PERN Todo application and building a full production-style deployment pipeline around it — containerization, image management, Kubernetes orchestration, load balancing, network segmentation, and monitoring.
 
 > The base application itself was **not built as part of this project** — it was sourced from [pern-stack-todo by AndrewJBateman](https://github.com/AndrewJBateman/pern-stack-todo). This repository documents the DevOps/infrastructure work: Docker, AWS, EKS, Kubernetes, and CloudWatch.
+
+![Live application running on AWS ALB](screenshots/live-app.png)
 
 ---
 
@@ -137,11 +139,17 @@ Docker images are pushed to ECR and pulled directly by the EKS Deployments.
 
 **Region:** `us-east-1`
 
+![Amazon ECR repositories](screenshots/ecr-repositories.png)
+
 ---
 
 ## ☸️ Kubernetes Configuration
 
 **Namespace:** `todo-app`
+
+![EKS cluster overview](screenshots/eks-cluster-overview.png)
+
+![EKS worker nodes and node group](screenshots/eks-node-groups.png)
 
 ### Deployments
 
@@ -182,6 +190,14 @@ An Application Load Balancer sits in front of the cluster with two target groups
 | Frontend | HTTP | 30080 | Instance |
 | Backend | HTTP | 30500 | Instance |
 
+Path-based listener rules route requests to the correct backend service:
+
+![ALB listener rules routing /api and /todos to the backend](screenshots/alb-listener-rules.png)
+
+Both target groups reporting healthy after deployment:
+
+![Backend target group showing 2/2 healthy targets](screenshots/backend-target-group-healthy.png)
+
 ---
 
 ## 🔒 Security Groups
@@ -219,6 +235,8 @@ Metrics tracked for the backend service:
 | **Faults (5xx)** | Server-side error count |
 | **Errors (4xx)** | Client-side error count |
 | **Health summary** | Aggregated error rate (4xx) and fault rate (5xx) at a glance |
+
+![CloudWatch Application Map showing pern-backend health](screenshots/cloudwatch-application-map.png)
 
 ---
 
@@ -342,7 +360,7 @@ Successfully deployed and tested end-to-end on AWS, including:
 - ALB routing verified via both frontend (`30080`) and backend (`30500`) target groups
 - End-to-end Todo CRUD operations confirmed through the `/todos` API
 
-> Infrastructure can be scaled down or removed at any time to control AWS costs — the source code and Kubernetes manifests remain fully available in this repository.
+> **Note:** The AWS infrastructure for this project (EKS cluster, ALB, RDS instance, etc.) has since been deleted to avoid ongoing AWS costs. The source code, Docker configuration, and Kubernetes manifests remain fully available in this repository and can be redeployed by following the steps above.
 
 ---
 
@@ -350,3 +368,7 @@ Successfully deployed and tested end-to-end on AWS, including:
 
 **Abdul Moiz**
 GitHub: [@abdulmoiz672006](https://github.com/abdulmoiz672006)
+
+## 📂 Repository
+
+[Taskapp_AWS_EKS_Deployment](https://github.com/abdulmoiz672006/Taskapp_AWS_EKS_Deployment)
