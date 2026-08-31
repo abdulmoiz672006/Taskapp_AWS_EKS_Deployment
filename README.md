@@ -6,7 +6,7 @@ This project focuses on the **DevOps and cloud infrastructure side**: taking an 
 
 > The base application itself was **not built as part of this project** — it was sourced from [pern-stack-todo by AndrewJBateman](https://github.com/AndrewJBateman/pern-stack-todo). This repository documents the DevOps/infrastructure work: Docker, AWS, EKS, Kubernetes, and CloudWatch.
 
-![Live application running on AWS ALB](screenshots/live-app.png)
+![Live application running on AWS ALB](screenshots/Screenshot%202026-08-24%20230416.png)
 
 ---
 
@@ -139,7 +139,7 @@ Docker images are pushed to ECR and pulled directly by the EKS Deployments.
 
 **Region:** `us-east-1`
 
-![Amazon ECR repositories](screenshots/ecr-repositories.png)
+![Amazon ECR repositories](screenshots/Screenshot%202026-08-24%20233947.png)
 
 ---
 
@@ -147,9 +147,9 @@ Docker images are pushed to ECR and pulled directly by the EKS Deployments.
 
 **Namespace:** `todo-app`
 
-![EKS cluster overview](screenshots/eks-cluster-overview.png)
+![EKS cluster overview](screenshots/Screenshot%202026-08-24%20231149.png)
 
-![EKS worker nodes and node group](screenshots/eks-node-groups.png)
+![EKS worker nodes and node group](screenshots/Screenshot%202026-08-24%20231242.png)
 
 ### Deployments
 
@@ -196,7 +196,7 @@ Path-based listener rules route requests to the correct backend service:
 
 Both target groups reporting healthy after deployment:
 
-![Backend target group showing 2/2 healthy targets](screenshots/backend-target-group-healthy.png)
+![Backend target group showing 2/2 healthy targets](screenshots/Screenshot%202026-08-24%20231005.png)
 
 ---
 
@@ -236,7 +236,7 @@ Metrics tracked for the backend service:
 | **Errors (4xx)** | Client-side error count |
 | **Health summary** | Aggregated error rate (4xx) and fault rate (5xx) at a glance |
 
-![CloudWatch Application Map showing pern-backend health](screenshots/cloudwatch-application-map.png)
+![CloudWatch Application Map showing pern-backend health](screenshots/Screenshot%202026-08-24%20232922.png)
 
 ---
 
