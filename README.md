@@ -6,7 +6,11 @@ This project focuses on the **DevOps and cloud infrastructure side**: taking an 
 
 > The base application itself was **not built as part of this project** — it was sourced from [pern-stack-todo by AndrewJBateman](https://github.com/AndrewJBateman/pern-stack-todo). This repository documents the DevOps/infrastructure work: Docker, AWS, EKS, Kubernetes, and CloudWatch.
 
+---
+
 ![Live application running on AWS ALB](screenshots/Screenshot%202026-08-24%20230416.png)
+
+*The Todo app running live, served through the AWS Application Load Balancer.*
 
 ---
 
@@ -139,7 +143,11 @@ Docker images are pushed to ECR and pulled directly by the EKS Deployments.
 
 **Region:** `us-east-1`
 
+---
+
 ![Amazon ECR repositories](screenshots/Screenshot%202026-08-24%20233947.png)
+
+*The `pern-backend` and `pern-frontend` repositories in Amazon ECR.*
 
 ---
 
@@ -147,9 +155,17 @@ Docker images are pushed to ECR and pulled directly by the EKS Deployments.
 
 **Namespace:** `todo-app`
 
+---
+
 ![EKS cluster overview](screenshots/Screenshot%202026-08-24%20231149.png)
 
+*The `Taskapp-Cluster` on Amazon EKS — active, healthy, and running Kubernetes 1.36.*
+
 ![EKS worker nodes and node group](screenshots/Screenshot%202026-08-24%20231242.png)
+
+*The two EKS worker nodes, both `Ready`, running under a single node group.*
+
+---
 
 ### Deployments
 
@@ -190,13 +206,27 @@ An Application Load Balancer sits in front of the cluster with two target groups
 | Frontend | HTTP | 30080 | Instance |
 | Backend | HTTP | 30500 | Instance |
 
-Path-based listener rules route requests to the correct backend service:
+### Listener Rules
+
+Path-based listener rules route requests to the correct backend service.
+
+---
 
 ![ALB listener rules routing /api and /todos to the backend](screenshots/alb-listener-rules.png)
 
-Both target groups reporting healthy after deployment:
+*Listener rules on the ALB — `/api/*` and `/todos*` are forwarded to the backend target group, everything else falls through to the frontend.*
+
+---
+
+### Target Group Health
+
+Both target groups reporting healthy after deployment.
+
+---
 
 ![Backend target group showing 2/2 healthy targets](screenshots/Screenshot%202026-08-24%20231005.png)
+
+*The backend target group — 2/2 targets healthy on port 30500.*
 
 ---
 
@@ -236,7 +266,11 @@ Metrics tracked for the backend service:
 | **Errors (4xx)** | Client-side error count |
 | **Health summary** | Aggregated error rate (4xx) and fault rate (5xx) at a glance |
 
+---
+
 ![CloudWatch Application Map showing pern-backend health](screenshots/Screenshot%202026-08-24%20232922.png)
+
+*CloudWatch Application Map — the `pern-backend` service showing 254 requests, ~100% availability, and 0% errors/faults.*
 
 ---
 
